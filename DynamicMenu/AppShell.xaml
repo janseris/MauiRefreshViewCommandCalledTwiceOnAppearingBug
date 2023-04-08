@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell
+    x:Class="DynamicMenu.AppShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:DynamicMenu"
+    xmlns:views="clr-namespace:DynamicMenu.Views"
+    xmlns:viewmodels="clr-namespace:DynamicMenu.ViewModels"
+    x:DataType="viewmodels:AppShellViewModel"
+    >
+
+    <Shell.FlyoutHeader>
+        <VerticalStackLayout Padding="20, 14">
+            <Label Text="User name:" TextColor="{StaticResource Primary}" FontAttributes="Bold"/>
+            <Label Text="{Binding UserName}"/>
+        </VerticalStackLayout>
+    </Shell.FlyoutHeader>
+
+    <ShellContent
+        FlyoutItemIsVisible="False"
+        Title="Login"
+        ContentTemplate="{DataTemplate views:LoginPage}"
+        Route="LoginPage"/>
+
+    <ShellContent
+        IsVisible="{Binding ArcheologieMenuButtonVisible}"
+        Title="Archeologie"
+        ContentTemplate="{DataTemplate views:ArcheologiePage}"
+        Route="ArcheologiePage"/>
+    
+    <ShellContent
+        IsVisible="{Binding BozpMenuButtonVisible}"
+        Title="BOZP"
+        ContentTemplate="{DataTemplate views:BozpPage}"
+        Route="BozpPage"/>
+    
+    <ShellContent
+        IsVisible="{Binding MonitoringMenuButtonVisible}"
+        Title="Monitoring"
+        ContentTemplate="{DataTemplate views:MonitoringPage}"
+        Route="MonitoringPage"/>
+
+    <Shell.FlyoutFooter>
+        <Button Margin="20" Text="Logout" Command="{Binding LogoutCommand}"/>
+    </Shell.FlyoutFooter>
+
+</Shell>
